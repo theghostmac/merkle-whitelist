@@ -21,3 +21,12 @@ during the early stages of a launch.
 5. **Compatibility and Integration**: Design the DNAM to be easily integrated with existing NFT projects or platforms on Ethereum, ensuring broad usability and appeal.
 
 6. **Anti-Sybil Mechanism**: Incorporate mechanisms to limit the impact of Sybil attacks, where one user tries to claim multiple spots on the whitelist by using different addresses.
+
+
+## TODO:
+
+- [ ] Deploy the contract to an EVM-compatible chain, 
+- [ ] Fetch the contract ABI
+- [ ] Use `abigen` to create Go bindings. 
+- [ ] Write a simple client to interact with the contract.
+- [ ] Create a UI for the Go client.

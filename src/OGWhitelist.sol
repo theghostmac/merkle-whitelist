@@ -45,7 +45,29 @@ contract OGWhitelist is ERC721, Ownable {
         addressMintedBalance[msg.sender]++;
     }
 
+    function verifyWhitelistStatus(bytes32[] calldata _merkleProof, address _address) public view returns (bool) {
+        bytes32 leaf = keccak256(abi.encodePacked(_address));
+        return MerkleProof.verify(_merkleProof, merkleRoot, leaf);
+    }
+
+    function totalMinted() public view returns (uint256) {
+        return _tokenIdCounter;
+    }
+
+    function remainingSupply() public view returns (uint256) {
+        return MAX_SUPPLY - _tokenIdCounter;
+    }
+
+    function withdraw(address payable _to) public onlyOwner {
+        require(_to != address(0), "Invalid address");
+        require(address(this).balance > 0, "No funds to withdraw");
+
+        (bool success, ) = _to.call{value: address(this).balance}("");
+        require(success, "Transfer failed");
+    }
+
     function _mintNFT() private {
+        require(_tokenIdCounter < MAX_SUPPLY, "Max NFT supply reached");
         _safeMint(msg.sender, _tokenIdCounter);
         _tokenIdCounter++;
     }
