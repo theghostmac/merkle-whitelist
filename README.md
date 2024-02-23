@@ -21,13 +21,3 @@ during the early stages of a launch.
 5. **Compatibility and Integration**: Design the DNAM to be easily integrated with existing NFT projects or platforms on Ethereum, ensuring broad usability and appeal.
 
 6. **Anti-Sybil Mechanism**: Incorporate mechanisms to limit the impact of Sybil attacks, where one user tries to claim multiple spots on the whitelist by using different addresses.
-
-### Development Phases
-
-- **Phase 1: Smart Contract Development**
-
-- **Phase 2: Frontend Interface**
-
-- **Phase 3: Deployment and Testing**
-
-- **Phase 4: Documentation and Open Source**
