@@ -21,7 +21,7 @@ contract TieredOGWhitelist is ERC721, Ownable {
     constructor(bytes32 _merkleRoot) ERC721("OGWhitelistNFT", "OGNFT") {
         merkleRoot = _merkleRoot;
 
-        // **Set initial tier prices and limits** (replace with your desired values)
+        // **Set initial tier prices and limits**
         tierMintPrice[OGTier.Bronze] = 0.0005 ether;
         tierMintLimit[OGTier.Bronze] = 2;
         tierMintPrice[OGTier.Silver] = 0.0002 ether;
