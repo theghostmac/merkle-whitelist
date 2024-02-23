@@ -8,6 +8,8 @@ The system aims to provide NFT builders with a tool to create an exclusive exper
 supporters or any designated group, ensuring that only whitelisted addresses can mint or purchase NFTs 
 during the early stages of a launch.
 
+![Compilation successful](img.png)
+
 ## Key Features
 
 1. **Merkle Tree Whitelisting**: Utilize Merkle Trees to efficiently verify whether an address is part of the whitelist without revealing the entire list on-chain, thus ensuring privacy and reducing gas costs.

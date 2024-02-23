@@ -9,6 +9,8 @@ contract TieredOGWhitelist is ERC721, Ownable {
     uint256 private _tokenIdCounter = 0;
     bytes32 public merkleRoot;
 
+    uint256 public constant PUBLIC_MINT_PRICE = 0.005 ether;
+
     // **OG Supporter Tiers and Benefits**
     enum OGTier {
         None,
@@ -24,7 +26,7 @@ contract TieredOGWhitelist is ERC721, Ownable {
     // **Anti-Sybil Mechanism**
     mapping(address => bool) public minted; // Tracks addresses that have already minted
 
-    constructor(bytes32 _merkleRoot) ERC721("OGWhitelistNFT", "OGNFT") {
+    constructor(bytes32 _merkleRoot, address initialOwner) ERC721("OGWhitelistNFT", "OGNFT") Ownable(initialOwner) {
         merkleRoot = _merkleRoot;
 
         // **Set initial tier prices and limits**
@@ -59,9 +61,9 @@ contract TieredOGWhitelist is ERC721, Ownable {
         require(MerkleProof.verify(_merkleProof, merkleRoot, leaf), "Invalid proof");
 
         // Ensure mint limit for the tier is not exceeded.
-        require(_balanceOf[msg.sender] < tierMintLimit[ogTiers[msg.sender]], "Mint limit for tier reached");
+        require(balanceOf(msg.sender) < tierMintLimit[ogTiers[msg.sender]], "Mint limit for tier reached");
 
-        _mintNFT();
+    _mintNFT();
         minted[msg.sender] = true;
     }
 

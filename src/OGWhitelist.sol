@@ -14,7 +14,7 @@ contract OGWhitelist is ERC721, Ownable {
 
     mapping(address => uint256) public addressMintedBalance;
 
-    constructor(bytes32 _merkleRoot) ERC721("OGWhitelistNFT", "OGNFT") {
+    constructor(bytes32 _merkleRoot, address initialOwner) ERC721("OGWhitelistNFT", "OGNFT") Ownable(initialOwner) {
         merkleRoot = _merkleRoot;
     }
 
