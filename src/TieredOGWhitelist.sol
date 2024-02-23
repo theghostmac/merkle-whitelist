@@ -1,16 +1,22 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-import { ERC721 } from "../lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol";
-import { Ownable } from "../lib/openzeppelin-contracts/contracts/access/Ownable.sol";
-import { MerkleProof } from "../lib/openzeppelin-contracts/contracts/utils/cryptography/MerkleProof.sol";
+import {ERC721} from "../lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol";
+import {Ownable} from "../lib/openzeppelin-contracts/contracts/access/Ownable.sol";
+import {MerkleProof} from "../lib/openzeppelin-contracts/contracts/utils/cryptography/MerkleProof.sol";
 
 contract TieredOGWhitelist is ERC721, Ownable {
     uint256 private _tokenIdCounter = 0;
     bytes32 public merkleRoot;
 
     // **OG Supporter Tiers and Benefits**
-    enum OGTier { None, Bronze, Silver, Gold }
+    enum OGTier {
+        None,
+        Bronze,
+        Silver,
+        Gold
+    }
+
     mapping(address => OGTier) public ogTiers;
     mapping(OGTier => uint256) public tierMintPrice;
     mapping(OGTier => uint256) public tierMintLimit;

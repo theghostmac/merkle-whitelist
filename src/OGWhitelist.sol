@@ -1,22 +1,22 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-import { ERC721 } from "../lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol";
-import { Ownable } from "../lib/openzeppelin-contracts/contracts/access/Ownable.sol";
-import { MerkleProof } from "../lib/openzeppelin-contracts/contracts/utils/cryptography/MerkleProof.sol";
+import {ERC721} from "../lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol";
+import {Ownable} from "../lib/openzeppelin-contracts/contracts/access/Ownable.sol";
+import {MerkleProof} from "../lib/openzeppelin-contracts/contracts/utils/cryptography/MerkleProof.sol";
 
 contract OGWhitelist is ERC721, Ownable {
     uint256 private _tokenIdCounter = 0;
-    bytes public merkleRoot;
+    bytes32 public merkleRoot;
     uint256 public constant MAX_SUPPLY = 4000;
     uint256 public constant OG_MINT_PRICE = 0.001 ether;
     uint256 public constant PUBLIC_MINT_PRICE = 0.005 ether;
 
-    mapping(address => uint) public addressMintedBalance;
+    mapping(address => uint256) public addressMintedBalance;
 
-   constructor(bytes32 _merkleRoot) ERC721("OGWhitelistNFT", "OGNFT") {
-       merkleRoot = _merkleRoot;
-   }
+    constructor(bytes32 _merkleRoot) ERC721("OGWhitelistNFT", "OGNFT") {
+        merkleRoot = _merkleRoot;
+    }
 
     function updateMerkleRoot(bytes32 _newMerkleRoot) public onlyOwner {
         merkleRoot = _newMerkleRoot;
@@ -62,7 +62,7 @@ contract OGWhitelist is ERC721, Ownable {
         require(_to != address(0), "Invalid address");
         require(address(this).balance > 0, "No funds to withdraw");
 
-        (bool success, ) = _to.call{value: address(this).balance}("");
+        (bool success,) = _to.call{value: address(this).balance}("");
         require(success, "Transfer failed");
     }
 
