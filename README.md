@@ -1,66 +1,33 @@
-## Foundry
+# Decentralized NFT Access Manager (DNAM)
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+## Overview
 
-Foundry consists of:
+The Decentralized NFT Access Manager (DNAM) is a Solidity-based smart contract system designed to manage access to NFT launches, 
+pre-sales, or any other exclusive content in a decentralized, secure, and efficient manner using Merkle Trees for whitelisting. 
+The system aims to provide NFT builders with a tool to create an exclusive experience for their early 
+supporters or any designated group, ensuring that only whitelisted addresses can mint or purchase NFTs 
+during the early stages of a launch.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## Key Features
 
-## Documentation
+1. **Merkle Tree Whitelisting**: Utilize Merkle Trees to efficiently verify whether an address is part of the whitelist without revealing the entire list on-chain, thus ensuring privacy and reducing gas costs.
 
-https://book.getfoundry.sh/
+2. **Dynamic Whitelist Management**: Enable NFT project owners to dynamically update the whitelist by deploying a new Merkle Tree root to the smart contract, catering for last-minute changes or additional rounds of whitelisting.
 
-## Usage
+3. **OG Supporter Rewards**: Implement a system that allows for different tiers within the whitelist, such as OG supporters, who may receive additional benefits like reduced minting costs, access to special editions, or higher purchase limits.
 
-### Build
+4. **Decentralized Verification**: Allow users to verify their whitelisting status through a decentralized interface, providing transparency and trust in the whitelisting process.
 
-```shell
-$ forge build
-```
+5. **Compatibility and Integration**: Design the DNAM to be easily integrated with existing NFT projects or platforms on Ethereum, ensuring broad usability and appeal.
 
-### Test
+6. **Anti-Sybil Mechanism**: Incorporate mechanisms to limit the impact of Sybil attacks, where one user tries to claim multiple spots on the whitelist by using different addresses.
 
-```shell
-$ forge test
-```
+### Development Phases
 
-### Format
+- **Phase 1: Smart Contract Development**
 
-```shell
-$ forge fmt
-```
+- **Phase 2: Frontend Interface**
 
-### Gas Snapshots
+- **Phase 3: Deployment and Testing**
 
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+- **Phase 4: Documentation and Open Source**
