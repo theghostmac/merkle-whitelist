@@ -12,8 +12,8 @@ contract OGWhitelist is ERC721URIStorage, Ownable, ReentrancyGuard {
     uint256 private _tokenIdCounter = 0;
     bytes32 public merkleRoot;
     uint256 public constant MAX_SUPPLY = 1000;
-    uint256 public constant OG_MINT_PRICE = 0.0001 ether;
-    uint256 public constant PUBLIC_MINT_PRICE = 0.0005 ether;
+    uint256 public constant OG_MINT_PRICE = 0.0000000000001 ether;
+    uint256 public constant PUBLIC_MINT_PRICE = 0.0000000000005 ether;
 
     mapping(address => uint256) public addressMintedBalance;
 
