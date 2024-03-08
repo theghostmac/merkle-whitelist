@@ -68,3 +68,4 @@ func hashPair(left, right []byte) []byte {
 	hash.Write(right)
 	return hash.Sum(nil)
 }
+
