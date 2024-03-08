@@ -91,6 +91,7 @@ func MintNFT(contract *ogwhitelist.Ogwhitelist, client *ethclient.Client, testAd
 	if err != nil {
 		return fmt.Errorf("failed to fetch network ID: %v", err)
 	}
+	log.Println("---> Chain ID is: \n\n", chainID)
 
 	// Prepare the authorized transaction options
 	auth, err := bind.NewKeyedTransactorWithChainID(privateKey, chainID)
@@ -110,6 +111,8 @@ func MintNFT(contract *ogwhitelist.Ogwhitelist, client *ethclient.Client, testAd
 	if err != nil {
 	    return fmt.Errorf("failed to find proof for address %s: %v", testAddress, err)
 	}
+
+	log.Println("Proof from MintNFT func is: ", proof)
 
 	// // Manually specify the correct proofs
 	// proofs := []string{

@@ -41,7 +41,7 @@ contract OGWhitelist is ERC721URIStorage, Ownable, ReentrancyGuard {
         addressMintedBalance[msg.sender]++;
     }
 
-    function ogMint(bytes32[] calldata _merkleProof) public payable nonReentrant {
+    function ogMint(bytes32[] memory _merkleProof) external public payable nonReentrant {
         require(_tokenIdCounter < MAX_SUPPLY, "Max supply reached");
         require(msg.value >= OG_MINT_PRICE, "Insufficient funds for OG mint");
         require(addressMintedBalance[msg.sender] < 1, "Address has already minted");
