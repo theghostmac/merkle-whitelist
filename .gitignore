@@ -13,3 +13,8 @@ docs/
 # Dotenv file
 .env
 .idea/
+
+
+build/
+
+.build/
