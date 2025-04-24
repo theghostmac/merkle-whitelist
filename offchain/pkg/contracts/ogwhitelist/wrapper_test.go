@@ -2,13 +2,13 @@ package ogwhitelist
 
 import (
 	"context"
+	"github.com/ethereum/go-ethereum/accounts/abi/bind/backends"
+	"github.com/ethereum/go-ethereum/core"
 	"math/big"
 	"testing"
 
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
-	"github.com/ethereum/go-ethereum/accounts/abi/bind/backends"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/core"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -21,7 +21,7 @@ func deployContract(t *testing.T) (*Wrapper, *bind.TransactOpts, *backends.Simul
 	require.NoError(t, err)
 
 	// Create auth for transactions
-	chainID := big.NewInt(1337) // Simulated chain ID
+	chainID := big.NewInt(1337)
 	auth, err := bind.NewKeyedTransactorWithChainID(privateKey, chainID)
 	require.NoError(t, err)
 
@@ -29,8 +29,14 @@ func deployContract(t *testing.T) (*Wrapper, *bind.TransactOpts, *backends.Simul
 	balance := new(big.Int)
 	balance.SetString("10000000000000000000", 10) // 10 ETH
 	address := auth.From
+
+	// Try with different genesis alloc type based on your import
 	alloc := make(core.GenesisAlloc)
 	alloc[address] = core.GenesisAccount{Balance: balance}
+
+	// Compile with older Solidity version (0.8.19 or below) to avoid PUSH0
+	// Add this to the contract: pragma solidity ^0.8.19;
+
 	blockchain := backends.NewSimulatedBackend(alloc, 10000000)
 
 	// Set up initial merkle root
@@ -41,7 +47,7 @@ func deployContract(t *testing.T) (*Wrapper, *bind.TransactOpts, *backends.Simul
 		auth,
 		blockchain,
 		initialMerkleRoot,
-		auth.From, // Initial owner is the deployer
+		auth.From,
 	)
 	require.NoError(t, err)
 	blockchain.Commit()
