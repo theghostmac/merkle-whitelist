@@ -13,3 +13,9 @@ docs/
 # Dotenv file
 .env
 .idea/
+
+
+build/
+
+.build/
+node_modules

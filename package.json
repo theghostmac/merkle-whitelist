@@ -1,0 +1,26 @@
+{
+  "name": "merkle-whitelist",
+  "version": "1.0.0",
+  "description": "## Overview",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theghostmac/merkle-whitelist.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theghostmac/merkle-whitelist/issues"
+  },
+  "homepage": "https://github.com/theghostmac/merkle-whitelist#readme",
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.3.0"
+  }
+}

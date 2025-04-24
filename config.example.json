@@ -1,0 +1,8 @@
+{
+  "rpc_endpoint": "http://localhost:8545",
+  "chain_id": 1337,
+  "contracts": {
+    "og_whitelist": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
+  },
+  "addresses_file": "addresses.json"
+}
