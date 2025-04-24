@@ -11,7 +11,7 @@ import (
 	"github.com/ethereum/go-ethereum/ethclient"
 	"golang.org/x/crypto/sha3"
 	"log"
-	"merkle-whitelist/offchain/ogwhitelist"
+	"merkle-whitelist/offchain/pkg/contracts/ogwhitelist"
 	"os"
 )
 
@@ -109,7 +109,7 @@ func MintNFT(contract *ogwhitelist.Ogwhitelist, client *ethclient.Client, testAd
 	// Dynamically calculate the proof for the provided testAddress
 	proof, err := findHexProofForAnAddress("addresses.json", testAddress)
 	if err != nil {
-	    return fmt.Errorf("failed to find proof for address %s: %v", testAddress, err)
+		return fmt.Errorf("failed to find proof for address %s: %v", testAddress, err)
 	}
 
 	log.Println("Proof from MintNFT func is: ", proof)
@@ -125,13 +125,13 @@ func MintNFT(contract *ogwhitelist.Ogwhitelist, client *ethclient.Client, testAd
 	// Convert proof strings to [][32]byte format required by the smart contract
 	var merkleProof [][32]byte
 	for _, p := range proof {
-	    proofBytes, err := hex.DecodeString(p)
-	    if err != nil {
-	        return fmt.Errorf("invalid proof hex string: %v", err)
-	    }
-	    var proofElement [32]byte
-	    copy(proofElement[:], proofBytes[:32])
-	    merkleProof = append(merkleProof, proofElement)
+		proofBytes, err := hex.DecodeString(p)
+		if err != nil {
+			return fmt.Errorf("invalid proof hex string: %v", err)
+		}
+		var proofElement [32]byte
+		copy(proofElement[:], proofBytes[:32])
+		merkleProof = append(merkleProof, proofElement)
 	}
 
 	// // Convert proof strings to [][32]byte format required by the smart contract

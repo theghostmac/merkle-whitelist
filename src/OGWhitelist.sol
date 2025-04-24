@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-import {ERC721} from "../lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol";
-import {Ownable} from "../lib/openzeppelin-contracts/contracts/access/Ownable.sol";
-import {MerkleProof} from "../lib/openzeppelin-contracts/contracts/utils/cryptography/MerkleProof.sol";
-import {ReentrancyGuard} from "../lib/openzeppelin-contracts/contracts/utils/ReentrancyGuard.sol";
-import {ERC721URIStorage} from "../lib/openzeppelin-contracts/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
+import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
 
 contract OGWhitelist is ERC721URIStorage, Ownable, ReentrancyGuard {
@@ -41,7 +41,7 @@ contract OGWhitelist is ERC721URIStorage, Ownable, ReentrancyGuard {
         addressMintedBalance[msg.sender]++;
     }
 
-    function ogMint(bytes32[] memory _merkleProof) external public payable nonReentrant {
+    function ogMint(bytes32[] memory _merkleProof) public payable nonReentrant {
         require(_tokenIdCounter < MAX_SUPPLY, "Max supply reached");
         require(msg.value >= OG_MINT_PRICE, "Insufficient funds for OG mint");
         require(addressMintedBalance[msg.sender] < 1, "Address has already minted");

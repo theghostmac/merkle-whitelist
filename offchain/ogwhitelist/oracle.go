@@ -5,6 +5,7 @@ import (
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
+	ogwhitelist2 "merkle-whitelist/offchain/pkg/contracts/ogwhitelist"
 )
 
 var (
@@ -16,7 +17,7 @@ var (
 // Oracle contains the methods to interact with the smart contract
 type Oracle struct {
 	client       *ethclient.Client
-	whitelist    *Ogwhitelist
+	whitelist    *ogwhitelist2.Ogwhitelist
 	transactOpts *bind.TransactOpts
 }
 
@@ -29,7 +30,7 @@ func NewOracle() (*Oracle, error) {
 	}
 
 	// Instantiate the contract
-	whitelist, err := NewOgwhitelist(contractAddress, client)
+	whitelist, err := ogwhitelist2.NewOgwhitelist(contractAddress, client)
 	if err != nil {
 		return nil, err
 	}
